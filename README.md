@@ -45,3 +45,7 @@ MIT — see `LICENSE`.
 ---
 
 <sub>Built by [Kontenlaris Studio](https://github.com/kontenlaris-studio) · More: [InvoiceKit](https://kontenlaris-studio.github.io/invoicekit/) · [PromptVault](https://github.com/kontenlaris-studio/promptkeep) · [SkillSafe apps](https://skillsafe.ai/share/shr_pm3czpuh2gr8)</sub>
+
+## Also on SkillSafe
+
+The scanner is published as a scan-verified skill with a hosted app: [Skill Auditor](https://skill-auditor.skillsafe.ai) · skill [@kontenlaris-studio/skill-audit](https://skillsafe.ai/share/shr_b4ya70n5chxg).
