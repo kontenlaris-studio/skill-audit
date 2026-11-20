@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkillAudit — AI Skill Security Audit Service</title>
+<meta name="description" content="Before you install or publish an AI agent skill, get it audited. Deterministic scan + human review: credential access, exfiltration shapes, undocumented behavior. Report in 48 hours.">
+<style>
+  :root{--navy:#0a1931;--navy2:#10254a;--orange:#ff7a00;--ink:#14213d;--mut:#66788f;--line:#e3e9f2;--bg:#f4f6fb;--card:#fff;--red:#b3261e;--ok:#0e7a3d;--radius:14px;--shadow:0 10px 30px rgba(10,25,49,.10)}
+  *{box-sizing:border-box}
+  body{margin:0;font:15.5px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:40px 0 44px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+  .brand .dot{width:12px;height:12px;border-radius:3px;background:var(--orange)}
+  header h1{margin:18px 0 8px;font-size:36px;line-height:1.15;max-width:720px}
+  header h1 em{color:var(--orange);font-style:normal}
+  header p{margin:0;color:#c9d4e5;max-width:660px}
+  .cta{display:inline-block;margin-top:20px;background:var(--orange);color:#fff;font-weight:700;padding:12px 22px;border-radius:10px;text-decoration:none}
+  .cta.alt{background:transparent;border:1px solid rgba(255,255,255,.4);margin-left:10px}
+  section{padding:34px 0 6px}
+  h2{font-size:22px;margin:0 0 14px;color:var(--navy)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:820px){.grid3,.grid2{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+  .card h3{margin:0 0 8px;font-size:16px}
+  .card p{margin:0;color:var(--mut)}
+  .check{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .check li{padding-left:26px;position:relative}
+  .check li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800}
+  .verdict{border-left:5px solid var(--red);background:#fdf1f0}
+  .verdict.ok{border-left-color:var(--ok);background:#eefaf2}
+  .verdict b{font-size:17px}
+  .price .amount{font-size:32px;font-weight:800;color:var(--navy)}
+  .price .amount span{color:var(--orange)}
+  .steps{counter-reset:s;display:grid;gap:12px}
+  .steps div{padding-left:44px;position:relative}
+  .steps div::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+  footer{padding:30px 0 44px;color:var(--mut);text-align:center;font-size:13.5px}
+  a{color:var(--navy)}
+  code{background:#eef2f8;padding:1px 6px;border-radius:5px;font-size:13.5px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>SkillAudit</div>
+    <h1>Know what an AI skill <em>really does</em> before it runs on your machine.</h1>
+    <p>Agent skills execute with your credentials, your files and your network. We audit them — deterministic machine scan plus a human read — and hand you a plain-language verdict with the evidence. Report within 48 hours.</p>
+    <a class="cta" href="mailto:kontenlaris.studio@gmail.com?subject=SkillAudit%20order">Order an audit</a>
+    <a class="cta alt" href="https://github.com/kontenlaris-studio/skill-audit">See the scanner on GitHub</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>What we check</h2>
+    <div class="card">
+      <ul class="check">
+        <li><b>Credential access</b> — reads of <code>.env</code>, SSH keys, cloud credential files, keychains</li>
+        <li><b>Exfiltration shapes</b> — the dangerous combinations: environment reads + network calls, file writes + uploads in the same code</li>
+        <li><b>Execution surface</b> — shell commands, child processes, <code>eval</code>/<code>exec</code>, obfuscated or base64-hidden payloads</li>
+        <li><b>Network inventory</b> — every external domain the skill talks to, listed and judged</li>
+        <li><b>Wallet traps</b> — seed-phrase or private-key requests, which no legitimate skill ever needs</li>
+        <li><b>Documentation honesty</b> — does SKILL.md disclose the env vars, network and writes the code actually performs?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>What a verdict looks like</h2>
+    <div class="grid2">
+      <div class="card verdict"><b>F — do not install until fixed</b><p>A sample malicious skill: asks for a seed phrase, reads <code>~/.ssh/id_rsa</code>, and POSTs an API key to an unknown server. 3 critical · 2 high findings, each with file and line. <a href="https://github.com/kontenlaris-studio/skill-audit/blob/main/examples/sample-dirty-report.md">Full sample report →</a></p></div>
+      <div class="card verdict ok"><b>B — minor items to verify</b><p>A real published strategy skill: no credential access, no exfiltration shapes — three minor notes only. <a href="https://github.com/kontenlaris-studio/skill-audit/blob/main/examples/sample-clean-report.md">Full sample report →</a></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pricing</h2>
+    <div class="grid2">
+      <div class="card price"><h3>Scan + Report</h3><div class="amount">$29</div><p>Full deterministic scan, human read of SKILL.md, verdict report with file-and-line evidence and a network inventory. One skill, up to 50 files.</p></div>
+      <div class="card price"><h3>Audit + Fix Guidance</h3><div class="amount">$49</div><p>Everything in Scan + Report, plus concrete fix instructions per finding and one free re-scan after your fixes — the package publishers use before submitting to a registry.</p></div>
+    </div>
+    <p style="color:var(--mut)">Payment via PayPal. No account with us, no subscription. The scanner itself is open source — the service is the review, the judgement and the report.</p>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="card steps">
+      <div><b>Send the skill</b> — email a GitHub link or a zip of the skill folder. Never send credentials or production secrets.</div>
+      <div><b>We scan and read</b> — the deterministic scanner maps every risky pattern; a human then reads the code paths behind each finding to separate real risk from noise.</div>
+      <div><b>You get the verdict</b> — a Markdown report within 48 hours: grade, findings with evidence, network inventory, and what to fix first.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why trust this audit?</h2>
+    <div class="grid3">
+      <div class="card"><h3>Registry-proven</h3><p>Our own five published skills passed a commercial registry's security scan with zero critical findings — using this exact process.</p></div>
+      <div class="card"><h3>Open scanner</h3><p>The scanning engine is MIT-licensed on GitHub. Run it yourself first; order the service when you want the human judgement on top.</p></div>
+      <div class="card"><h3>Evidence, not vibes</h3><p>Every finding cites the rule, file and line. If we flag something that turns out benign, the report says why it was flagged.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">SkillAudit by <a href="https://github.com/kontenlaris-studio">Kontenlaris Studio</a> · <a href="mailto:kontenlaris.studio@gmail.com">kontenlaris.studio@gmail.com</a> · Also by us: <a href="https://kontenlaris-studio.github.io/invoicekit/">InvoiceKit</a> · <a href="https://github.com/kontenlaris-studio/promptkeep">PromptVault</a></div>
+</footer>
+</body>
+</html>
