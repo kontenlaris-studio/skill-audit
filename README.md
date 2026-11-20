@@ -48,4 +48,4 @@ MIT — see `LICENSE`.
 
 ## Also on SkillSafe
 
-The scanner is published as a scan-verified skill with a hosted app: [Skill Auditor](https://skill-auditor.skillsafe.ai) · skill [@kontenlaris-studio/skill-audit](https://skillsafe.ai/share/shr_b4ya70n5chxg).
+The scanner is published as a scan-verified skill with a hosted app: [Skill Auditor](https://skill-auditor.skillsafe.ai) · skill [@kontenlaris-studio/skill-audit](https://skillsafe.ai/share/shr_uln9q677gs45).
